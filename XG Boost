@@ -1,0 +1,44 @@
+# Step 1: Install & Import XGBoost (already available in Colab)
+import xgboost as xgb
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+print("XGBoost version:", xgb.__version__)
+# Create a simple dataset
+data = {
+    "Study_Hours": [1, 2, 3, 4, 5, 6, 7, 8],
+    "Result": [0, 0, 0, 1, 1, 1, 1, 1]  # 0 = Fail, 1 = Pass
+}
+
+df = pd.DataFrame(data)
+df
+X = df[["Study_Hours"]]
+y = df["Result"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=42
+)
+
+print("Training size:", len(X_train))
+print("Testing size:", len(X_test))
+model = xgb.XGBClassifier(
+    n_estimators=20,
+    max_depth=3,
+    learning_rate=0.3,
+    use_label_encoder=False,
+    eval_metric='logloss'
+)
+
+model.fit(X_train, y_train)
+
+print("Model trained successfully")
+y_pred = model.predict(X_test)
+
+pd.DataFrame({
+    "Study_Hours": X_test["Study_Hours"].values,
+    "Actual_Result": y_test.values,
+    "Predicted_Result": y_pred
+})
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
