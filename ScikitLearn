@@ -1,0 +1,41 @@
+# Step 1: Import required libraries
+# Scikit-learn helps machines learn from data
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error
+
+print("Libraries imported successfully")
+# Create a simple dataset
+data = {
+    "Study_Hours": [1, 2, 3, 4, 5, 6, 7, 8],
+    "Marks": [35, 40, 50, 55, 65, 70, 78, 85]
+}
+
+df = pd.DataFrame(data)
+df
+X = df[["Study_Hours"]]  # input
+y = df["Marks"]          # output
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=42
+)
+
+print("Training size:", len(X_train))
+print("Testing size:", len(X_test))
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+print("Model trained successfully")
+# Predict marks for students who study 5 and 7 hours
+new_hours = pd.DataFrame({"Study_Hours": [5, 7]})
+predicted_marks = model.predict(new_hours)
+
+pd.DataFrame({
+    "Study_Hours": new_hours["Study_Hours"],
+    "Predicted_Marks": predicted_marks
+})
+y_pred = model.predict(X_test)
+error = mean_absolute_error(y_test, y_pred)
+
+print("Average prediction error:", error)
