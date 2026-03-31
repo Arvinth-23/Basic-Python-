@@ -1,0 +1,28 @@
+# Plotly is used to create a intereactive Graphs for the given data and used for the visualization of the graph and other chart based Design
+
+
+# Step 1: Install & Import Plotly (already available in Colab)
+import plotly.express as px
+import pandas as pd
+
+print("Plotly and Pandas imported successfully")
+# Create a DataFrame
+data = {
+    "Name": ["Arun", "Beena", "Charan", "Divya", "Esha"],
+    "Math": [78, 66, 90, 55, 80],
+    "Science": [85, 74, 88, 60, 72],
+    "English": [92, 81, 95, 58, 77]
+}
+
+df = pd.DataFrame(data)
+df
+fig = px.bar(df, x="Name", y="Math", title="Math Marks - Interactive Bar Chart")
+fig.show()
+fig = px.line(df, x="Name", y="Math", title="Math Marks - Interactive Line Chart")
+fig.show()
+# Convert to long format
+df_long = df.melt(id_vars="Name", var_name="Subject", value_name="Marks")
+
+fig = px.bar(df_long, x="Name", y="Marks", color="Subject",
+             title="Student Marks - All Subjects (Interactive)")
+fig.show()
