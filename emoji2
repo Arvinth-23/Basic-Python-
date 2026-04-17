@@ -1,0 +1,5 @@
+import demoji
+
+text = "Welcome to the party! 🎉🥳"
+a1 = demoji.replace(text, "")
+print(a1)
