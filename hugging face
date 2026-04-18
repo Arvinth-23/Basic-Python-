@@ -1,0 +1,30 @@
+# ✅ Install transformers
+!pip install -q transformers
+# ✅ Import required libraries
+import transformers
+import torch
+from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
+
+# ✅ Print library version
+print(f"Transformers version: {transformers.__version__}")
+print("Transformers library is working!")
+# ==========================
+# 🔹 Text Generation
+# ==========================
+print("\n--- Text Generation ---")
+generator = pipeline("text-generation", model="distilgpt2")
+prompt = "Once upon a time in college when I studied 1st year of Engineering,"
+output = generator(prompt, max_length=100, temperature=0.7)[0]['generated_text']
+print("\nGenerated Text:")
+print(output)
+# ==========================
+# 🔹 Question Answering
+# ==========================
+print("\n--- Question Answering ---")
+question_answerer = pipeline("question-answering", model="distilbert-base-cased-distilled-squad")
+context = "Generative AI can create text, images, audio, video and music."
+question = "What can Generative AI create?"
+answer = question_answerer(question=question, context=context)
+print(f"\nQuestion: {question}")
+print(f"Context: {context}")
+print(f"Answer: {answer['answer']}")
