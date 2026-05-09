@@ -1,0 +1,18 @@
+# Simple Reflex Agent that is user for cleaning the room if pace is dirty 
+def reflex_agent(percept):
+    if percept == "dirty":
+        return "Clean the room"
+    elif percept == "clean":
+        return "Do nothing"
+    else:
+        return "Unknown percept"
+print("Simple Reflex Agent")
+while True:
+    percept = input("Enter percept (dirty/clean/quit): ").strip().lower()
+    
+    if percept == "quit":
+        print("Agent stopped.")
+        break
+    
+    action = reflex_agent(percept)
+    print(f"Agent Action: {action}\n")
