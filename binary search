@@ -1,0 +1,20 @@
+# Binary Search with User Input
+numbers = input("Enter sorted numbers separated by spaces: ").split()
+arr = [int(x) for x in numbers]
+target = int(input("Enter number to search: "))
+low = 0
+high = len(arr) - 1
+result = -1
+while low <= high:
+    mid = (low + high) // 2
+    if arr[mid] == target:
+        result = mid
+        break
+    elif arr[mid] < target:
+        low = mid + 1
+    else:
+        high = mid - 1
+if result != -1:
+    print(f"Found {target} at index {result}")
+else:
+    print(f"{target} not found in the list")
