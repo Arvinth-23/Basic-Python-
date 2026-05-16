@@ -1,0 +1,10 @@
+# Array Deletion with User Input
+numbers = input("Enter numbers separated by spaces: ").split()
+a = [int(x) for x in numbers]
+print("Original Array:", a)
+value = int(input("Enter number to delete: "))
+if value in a:
+    a.remove(value)
+    print("After Deletion:", a)
+else:
+    print(f"{value} not found in the array")
