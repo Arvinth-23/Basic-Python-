@@ -1,0 +1,11 @@
+numbers = input("Enter numbers separated by spaces: ").split()
+arr = [int(x) for x in numbers]
+print("Original List:", arr)
+old_value = int(input("Enter value to update: "))
+new_value = int(input("Enter new value: "))
+if old_value in arr:
+    index = arr.index(old_value)
+    arr[index] = new_value
+    print("Updated List:", arr)
+else:
+    print(f"{old_value} not found in the list")
