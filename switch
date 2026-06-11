@@ -1,0 +1,21 @@
+#This is the simple program for running the Swtich case in python 
+def get_day(day):
+    match day:
+        case 1:
+            return "Monday"
+        case 2:
+            return "Tuesday"
+        case 3:
+            return "Wednesday"
+        case 4:
+            return "Thursday"
+        case 5:
+            return "Friday"
+        case 6:
+            return "Saturday"
+        case 7:
+            return "Sunday"
+        case _:
+            return "Invalid day! Please enter a number between 1 and 7."
+day = int(input("Enter day number (1-7): "))
+print(f"Day: {get_day(day)}")
